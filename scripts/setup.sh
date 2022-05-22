@@ -32,7 +32,7 @@ give_permission() {
 }
 
 create_softlinks() {
-    sudo find . ! -name "setup.sh" -name "*.sh" -exec cp {} /usr/local/bin \;
+    sudo find . ! -name "setup.sh" -name "*.sh" -exec cp {} /usr/local/bin/ \;
     # removing file extension from scripts
     for script in /usr/local/bin/*.sh; do
         sudo mv $script /usr/local/bin/$(basename $script .sh)
