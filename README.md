@@ -1,4 +1,4 @@
-# debian-tools
+# bash tools
 
 This repository aims to provide multiple useful tools (mainly scripts) for debian and debian-based machines.
 
