@@ -1,11 +1,10 @@
-# bash tools
+# bash scripts
 
-This repository aims to provide multiple useful tools (mainly scripts) for debian and debian-based machines.
+This repository aims to provide multiple useful bash scripts.
 
-## Tools
+## Scripts
 
-- Scripts
-  - to be completed
+- to be completed
 
 ## Setup and use the scripts
 

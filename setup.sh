@@ -28,18 +28,18 @@ install_prerequisites() {
 }
 
 give_permission() {
-    sudo find . -name "*.sh" -exec chmod +x {} \;
+    sudo find ./scripts -name "*.sh" -exec chmod +x {} \;
 }
 
 create_softlinks() {
-    sudo find . ! -name "setup.sh" -name "*.sh" -exec cp {} /usr/local/bin/ \;
+    sudo find ./scripts -name "*.sh" -exec cp {} /usr/local/bin/ \;
     # removing file extension from scripts
     for script in /usr/local/bin/*.sh; do
         sudo mv $script /usr/local/bin/$(basename $script .sh)
     done
 }
 
-echo -e "debian-tools setup\n"
+echo -e "bash-scripts setup\n"
 # ask for super user
 echo "Password required..."
 sudo echo -e "Password given!\n"
