@@ -28,14 +28,13 @@ install_prerequisites() {
 }
 
 give_permission() {
-    sudo find ./scripts -name "*.sh" -exec chmod +x {} \;
+    sudo find . -name "*.sh" -exec chmod a+x {} \;
 }
 
 create_softlinks() {
-    sudo find ./scripts -name "*.sh" -exec cp {} /usr/local/bin/ \;
-    # removing file extension from scripts
-    for script in /usr/local/bin/*.sh; do
-        sudo mv $script /usr/local/bin/$(basename $script .sh)
+    # create softlinks without file extension
+    for script in $(find ./scripts -name "*.sh"); do
+        sudo ln -s $(realpath $script) /usr/local/bin/$(basename $script .sh)
     done
 }
 
@@ -51,7 +50,7 @@ echo -e "Prerequisites installed!\n"
 echo "Giving execution permission to scripts..."
 execute_command "give_permission"
 echo -e "Permission given!\n"
-# Copy scripts to /usr/local/bin which is usually already in the PATH
+# Create softlinks to /usr/local/bin which is usually already in the PATH
 echo "Creating soft links in /usr/local/bin..."
 execute_command "create_softlinks"
 echo -e "Soft links created!\n"
