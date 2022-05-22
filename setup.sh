@@ -24,7 +24,7 @@ execute_command() {
 }
 
 install_prerequisites() {
-    sudo apt-get -y install < ./requirements.txt
+    sudo apt-get -y install < ./requirements/apt.txt
 }
 
 give_permission() {

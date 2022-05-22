@@ -23,17 +23,16 @@ execute_command() {
     trap - EXIT
 }
 
-remove_softlinks() {
-    # remove all softlinks
-    for script in $(find ./scripts -name "*.sh"); do
-        sudo rm /usr/local/bin/$(basename $script .sh)
-    done
-}
-
-echo -e "bash-scripts uninstall\n"
+echo -e "Update all packages\n"
 # ask for super user
 echo "Password required..."
 sudo echo -e "Password given!\n"
-echo "removing all soft links..."
-execute_command "remove_softlinks"
-echo "soft links removed!"
+
+# iterate on all package managers and update
+for manager in $(find $(dirname $(readlink $0)) -mindepth 1 -type d); do
+    echo "Updating $(basename $manager) packages..."
+    execute_command "$(basename $manager)-update"
+    echo -e "$(basename $manager) packages updated!\n"
+done
+
+echo "Update finished!"
