@@ -1,14 +1,19 @@
 #!/bin/bash
+#
+# Update all the packages
 
-# import exec-cmd function
-. ./scripts/utils/exec-cmd.sh
+readonly PATH_TO_SCRIPT="$(dirname "$(readlink "${0}")")"
 
-echo "Update all packages"
+# import utility functions
+. "${PATH_TO_SCRIPT}"/../../utils/utils.sh
+
+echo 'Update all packages'
 # ask for super user
 sudo -v
 # iterate on all package managers and update
-for manager in $(find $(dirname $(readlink $0)) -mindepth 1 -type d); do
-    exec_cmd "$(basename $manager)-update" "Update $(basename $manager) packages"
+for manager in $(find "${PATH_TO_SCRIPT}" -mindepth 1 -type d); do
+  utils::exec_cmd "$(basename "${manager}")-update" \
+    "Update $(basename "${manager}") packages"
 done
 
-echo "Update finished!"
+echo 'Update finished!'

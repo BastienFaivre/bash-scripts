@@ -1,18 +1,20 @@
 #!/bin/bash
+#
+# Remove the environment
 
-# import exec-cmd function
-. ./scripts/utils/exec-cmd.sh
+# import utility functions
+. ./utils/utils.sh
 
 remove_softlinks() {
-    # remove all softlinks
-    for script in $(find ./scripts -name "*.sh"); do
-        sudo rm /usr/local/bin/$(basename $script .sh)
-    done
+  # remove all softlinks
+  for script in $(find ./scripts -name "*.sh"); do
+    sudo rm /usr/local/bin/"$(basename "${script}" .sh)"
+  done
 }
 
-echo "bash-scripts uninstall"
+echo 'bash-scripts uninstall'
 # ask for super user
 sudo -v
-exec_cmd "remove_softlinks" "Remove soft links"
+utils::exec_cmd 'remove_softlinks' 'Remove soft links'
 # Done
-echo "Uninstall finished!"
+echo 'Uninstall finished!'
