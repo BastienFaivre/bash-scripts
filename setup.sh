@@ -21,8 +21,6 @@ create_softlinks() {
 echo "bash-scripts setup"
 # ask for super user
 sudo -v
-# # gives permission to exec-cmd script
-# sudo chmod a+x ./scripts/utils/exec-cmd.sh
 # install prerequisites
 exec_cmd "install_prerequisites" "Install prerequisites"
 # Give execute permissions to the scripts
