@@ -2,8 +2,7 @@
 
 echo -e "Update apt packages\n"
 # ask for super user
-echo "Password required..."
-sudo echo -e "Password given!\n"
+sudo -v
 # update and clean apt packages
 sudo apt-get update
 sudo apt-get --with-new-pkgs upgrade -y --show-progress
