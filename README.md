@@ -54,4 +54,4 @@ If you've any improvement and/or tool suggestions, feel free to fork the project
 ## Conventions
 
 All the scripts must follow the [Google Shell Style Guide](https://google.github.io/styleguide/shellguide.html) conventions.
-Optionally, you can use the [ShellCheck](https://www.shellcheck.net/) tool to detect potential errors or warnings in your scripts.
+Optionally, the [ShellCheck](https://www.shellcheck.net/) tool can be used to detect potential errors or warnings in the scripts.
