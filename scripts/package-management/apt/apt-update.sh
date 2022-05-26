@@ -1,4 +1,6 @@
 #!/bin/bash
+#
+# Update apt packages
 
 echo -e 'Update apt packages\n'
 # ask for super user
