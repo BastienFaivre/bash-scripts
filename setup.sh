@@ -24,7 +24,7 @@ create_softlinks() {
 
 echo 'bash-scripts setup'
 # ask for super user
-sudo -v
+utils::ask_sudo
 # install prerequisites
 utils::exec_cmd 'install_prerequisites' 'Install prerequisites'
 # Give execute permissions to the scripts

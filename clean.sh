@@ -14,7 +14,8 @@ remove_softlinks() {
 
 echo 'bash-scripts uninstall'
 # ask for super user
-sudo -v
+utils::ask_sudo
+# remove softlinks
 utils::exec_cmd 'remove_softlinks' 'Remove soft links'
 # Done
 echo 'Uninstall finished!'

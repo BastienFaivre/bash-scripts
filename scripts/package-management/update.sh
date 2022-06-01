@@ -9,7 +9,7 @@ readonly PATH_TO_SCRIPT="$(dirname "$(readlink "${0}")")"
 
 echo 'Update all packages'
 # ask for super user
-sudo -v
+utils::ask_sudo
 # iterate on all package managers and update
 for manager in $(find "${PATH_TO_SCRIPT}" -mindepth 1 -type d); do
   utils::exec_cmd "$(basename "${manager}")-update" \

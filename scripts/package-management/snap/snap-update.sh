@@ -2,9 +2,14 @@
 #
 # Update snap packages
 
-echo -e 'Update snap packages\n'
+readonly PATH_TO_SCRIPT="$(dirname "$(readlink "${0}")")"
+
+# import utility functions
+. "${PATH_TO_SCRIPT}"/../../../utils/utils.sh
+
+echo 'Update snap packages'
 # ask for super user
-sudo -v
+utils::ask_sudo
 # update snap packages
 sudo snap refresh
 echo 'Update finished!'
