@@ -9,7 +9,8 @@ usage() {
   echo "Usage: ./setup.sh [OPTIONS]"
   echo "OPTIONS:"
   echo -e "\t-h, --help\t\t\tDisplay this help message"
-  echo -e "\t-t, --target-directory\t\tTarget directory to install the scripts"
+  echo -e "\t-t, --target-directory\t\tTarget directory to install the scripts.\
+ Default: /usr/local/bin"
 }
 
 install_prerequisites() {
@@ -27,12 +28,13 @@ create_softlinks() {
   mkdir -p "${target}"
   # create softlinks without file extension
   for script in $(find ./scripts -name "*.sh"); do
-    sudo ln -s "$(realpath "${script}")" ""${target}"/$(basename "${script}" .sh)"
+    sudo ln -s "$(realpath "${script}")" \
+      ""${target}"/$(basename "${script}" .sh)"
   done
 }
 
+# default target directory
 target='/usr/local/bin'
-
 # retrieve the target directory if specified
 while [[ "$#" -gt 0 ]]; do 
   case ${1} in
@@ -42,6 +44,8 @@ while [[ "$#" -gt 0 ]]; do
   esac;
   shift;
 done
+# save target directory
+echo "${target}" > ./utils/target-directory.txt
 
 echo 'bash-scripts setup'
 # ask for super user

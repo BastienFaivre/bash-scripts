@@ -23,15 +23,19 @@ To be able to use the scripts, simply give execution permission to the [setup sc
 sudo chmod u+x setup.sh
 ```
 
-Then run the script:
+Then run the script (see  `./setup.sh --help` for more information about options):
 
 ```bash
 ./setup.sh
 ```
 
-It will install the required packages, give all scripts execution permission, and finally create soft links in `/usr/local/bin`.
+It will install the required packages, give all scripts execution permission, and finally create soft links in the specified target directory or in `/usr/local/bin`, which is the default target directory.
 
-NOTE: THIS SCRIPT ASSUMES THAT `/usr/local/bin` IS ALREADY IN THE PATH. To verify, simply run `$PATH` and check if the path is in the output.
+NOTE: the specified target directory must be present in the path of your bash profile. You can check this by running `echo $PATH`. If it is not present, you can add it by adding the following line to your bash profile:
+
+```bash
+export PATH=$PATH:/path/to/target-directory
+```
 
 To execute a script `foo.sh`, just type its name in the terminal (without the extension):
 
@@ -39,13 +43,13 @@ To execute a script `foo.sh`, just type its name in the terminal (without the ex
 foo
 ```
 
-To remove all the soft links from `/usr/local/bin`, simply run the [clean script](clean.sh) also located in the scripts folder:
+To remove all the soft links from the target directory, simply run the [clean script](clean.sh) also located in the scripts folder:
 
 ```bash
 ./clean.sh
 ```
 
-This will remove all the soft links created in `/usr/local/bin` by the setup script. Note that it won't delete your personal files located in this folder!
+This will remove all the soft links created by the setup script. Note that it won't delete your personal files located in the target directory where the soft links were added!
 
 ## Contribution
 

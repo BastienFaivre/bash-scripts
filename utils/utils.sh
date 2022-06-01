@@ -57,7 +57,7 @@ utils::exec_cmd() {
   local cmd_explanation="${2}"
   # check if a command is provided
   if [[ -z "${cmd}" ]]; then
-    utils::err 'function exec_cmd(): No command provided'
+    utils::err 'function exec_cmd(): No command provided.'
     exit 1
   fi
   # execute the command in background
