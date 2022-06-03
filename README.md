@@ -34,7 +34,7 @@ It will install the required packages, give all scripts execution permission, an
 NOTE: the specified target directory must be present in the path of your bash profile. You can check this by running `echo $PATH`. If it is not present, you can add it by adding the following line to your bash profile:
 
 ```bash
-export PATH=$PATH:/path/to/target-directory
+export PATH="$PATH:/path/to/target-directory"
 ```
 
 To execute a script `foo.sh`, just type its name in the terminal (without the extension):
