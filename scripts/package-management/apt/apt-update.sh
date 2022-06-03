@@ -17,4 +17,5 @@ sudo apt-get clean
 sudo apt-get autoclean
 sudo apt-get autoremove --purge -y --show-progress
 trap - ERR
+# Done
 echo 'Update finished!'

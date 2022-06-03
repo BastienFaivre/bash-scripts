@@ -15,5 +15,5 @@ for manager in $(find "${PATH_TO_SCRIPT}" -mindepth 1 -type d); do
   utils::exec_cmd "$(basename "${manager}")-update" \
     "Update $(basename "${manager}") packages"
 done
-
+# Done
 echo 'Update finished!'

@@ -12,4 +12,5 @@ echo 'Update snap packages'
 utils::ask_sudo
 # update snap packages
 sudo snap refresh
+# Done
 echo 'Update finished!'

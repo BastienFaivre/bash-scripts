@@ -43,13 +43,13 @@ To execute a script `foo.sh`, just type its name in the terminal (without the ex
 foo
 ```
 
-To remove all the soft links from the target directory, simply run the [clean script](clean.sh) also located in the scripts folder:
+To properly uninstall the scripts, simply run the [clean script](clean.sh) also located in the scripts folder:
 
 ```bash
 ./clean.sh
 ```
 
-This will remove all the soft links created by the setup script. Note that it won't delete your personal files located in the target directory where the soft links were added!
+It will delete all the soft links and also remove the execution permission to all scripts. Note that it won't delete your personal files located in the target directory where the soft links were added!
 
 ## Contribution
 
