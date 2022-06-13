@@ -71,6 +71,12 @@ utils::exec_cmd() {
     echo -ne "\r${sp:i++%${#sp}:1} ${cmd_explanation}"
     sleep 0.1
   done
-  echo -ne "\r\033[0;32mDONE\033[0m ${cmd_explanation}\n"
+  wait ${pid}
+  # check is the command succeeded
+  if [ "$?" -ne 0 ]; then
+    echo -ne "\r\033[0;31mFAIL\033[0m ${cmd_explanation}\n"
+  else
+    echo -ne "\r\033[0;32mDONE\033[0m ${cmd_explanation}\n"
+  fi
   trap - EXIT
 }

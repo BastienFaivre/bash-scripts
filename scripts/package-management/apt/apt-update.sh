@@ -10,12 +10,15 @@ readonly PATH_TO_SCRIPT="$(dirname "$(readlink "${0}")")"
 echo 'Update apt packages'
 # ask for super user
 utils::ask_sudo
+# trap any error
+trap "exit 1" ERR
 # update and clean apt packages
 sudo apt-get update
 sudo apt-get --with-new-pkgs upgrade -y --show-progress
 sudo apt-get clean
 sudo apt-get autoclean
 sudo apt-get autoremove --purge -y --show-progress
+# remove the trap
 trap - ERR
 # Done
 echo 'Update finished!'
