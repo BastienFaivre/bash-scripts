@@ -6,16 +6,17 @@
 . ./utils/utils.sh
 
 usage() {
-  echo "Usage: ./setup.sh [OPTIONS]"
-  echo "OPTIONS:"
-  echo -e "\t-h, --help\t\t\tDisplay this help message"
-  echo -e "\t-t, --target-directory\t\tTarget directory to install the scripts.\
- Default: /usr/local/bin"
+  echo 'Usage: ./setup.sh [OPTIONS]'
+  echo 'OPTIONS:'
+  echo -e '             --help                    Display this help message'
+  echo -e "  -t <path>, --target-directory <path> Target directory to install\
+ the scripts."
+  echo -e "                                       Default: "${target}""
 }
 
 install_prerequisites() {
   # trap any error
-  trap "return 1" ERR
+  trap 'return 1' ERR
   sudo cat ./requirements/apt.txt | xargs sudo apt-get install -y
   # remove the trap
   trap - ERR
@@ -23,7 +24,7 @@ install_prerequisites() {
 
 give_permission() {
   # trap any error
-  trap "return 1" ERR
+  trap 'return 1' ERR
   sudo find ./scripts -name "*.sh" -exec chmod a+x {} \;
   # also give permission to the clean script
   sudo chmod a+x ./clean.sh
@@ -33,11 +34,11 @@ give_permission() {
 
 create_softlinks() {
   # trap any error
-  trap "return 1" ERR
+  trap 'return 1' ERR
   # create target directory if it doesn't exist
   mkdir -p "${target}"
   # create softlinks without file extension
-  for script in $(find ./scripts -name "*.sh"); do
+  for script in $(find ./scripts -name '*.sh'); do
     sudo ln -fs "$(realpath "${script}")" \
       ""${target}"/$(basename "${script}" .sh)"
   done
@@ -47,10 +48,10 @@ create_softlinks() {
 
 # default target directory
 target='/usr/local/bin'
-# retrieve the target directory if specified
+# read arguments
 while [[ "$#" -gt 0 ]]; do 
   case ${1} in
-    -h|--help) usage; exit 0;;
+    --help) usage; exit 0;;
     -t|--target-directory) target="${2}"; shift;;
     *) echo "Unknown parameter passed: ${1}"; usage; exit 1;;
   esac;

@@ -20,7 +20,7 @@ delete_softlinks() {
 
 remove_permission() {
   # trap any error
-  trap "return 1" ERR
+  trap 'return 1' ERR
   sudo find ./scripts -name "*.sh" -exec chmod a-x {} \;
   # remove the trap
   trap - ERR
