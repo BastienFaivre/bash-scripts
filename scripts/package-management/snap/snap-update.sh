@@ -11,7 +11,7 @@ echo 'Update snap packages'
 # ask for super user
 utils::ask_sudo
 # trap any error
-trap "exit 1" ERR
+trap "utils::err 'An error occured while updating the packages'; exit 1" ERR
 # update snap packages
 sudo snap refresh
 # remove the trap

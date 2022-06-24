@@ -14,23 +14,35 @@ usage() {
 }
 
 install_prerequisites() {
+  # trap any error
+  trap "return 1" ERR
   sudo cat ./requirements/apt.txt | xargs sudo apt-get install -y
+  # remove the trap
+  trap - ERR
 }
 
 give_permission() {
+  # trap any error
+  trap "return 1" ERR
   sudo find ./scripts -name "*.sh" -exec chmod a+x {} \;
   # also give permission to the clean script
   sudo chmod a+x ./clean.sh
+  # remove the trap
+  trap - ERR
 }
 
 create_softlinks() {
+  # trap any error
+  trap "return 1" ERR
   # create target directory if it doesn't exist
   mkdir -p "${target}"
   # create softlinks without file extension
   for script in $(find ./scripts -name "*.sh"); do
-    sudo ln -s "$(realpath "${script}")" \
+    sudo ln -fs "$(realpath "${script}")" \
       ""${target}"/$(basename "${script}" .sh)"
   done
+  # remove the trap
+  trap - ERR
 }
 
 # default target directory
@@ -50,11 +62,21 @@ echo "${target}" > ./utils/target-directory.txt
 echo 'bash-scripts setup'
 # ask for super user
 utils::ask_sudo
+# error tracker
+error=0
 # install prerequisites
 utils::exec_cmd 'install_prerequisites' 'Install prerequisites'
+((error|=$?))
 # Give execute permissions to the scripts
 utils::exec_cmd 'give_permission' 'Give permission to scripts'
+((error|=$?))
 # Create softlinks to /usr/local/bin which is usually already in the PATH
 utils::exec_cmd 'create_softlinks' "Create soft links in "${target}""
+((error|=$?))
 # Done
-echo 'Setup finished!'
+if [[ "${error}" -eq 0 ]]; then
+  echo 'Setup finished!'
+else
+  utils::err 'Setup imcomplete.'
+  exit 1
+fi

@@ -16,7 +16,7 @@
 #   https://google.github.io/styleguide/shellguide.html#stdout-vs-stderr
 #######################################
 utils::err() {
-  echo "[$(date +'%Y-%m-%d %H:%M:%S')]: $*" >&2
+  echo -e "[$(date +'%Y-%m-%d %H:%M:%S')] \033[0;31mERROR:\033[0m $*" >&2
 }
 
 #######################################
@@ -49,7 +49,7 @@ utils::ask_sudo() {
 # Outputs:
 #   Writes loader and command explanation to stdout
 # Returns:
-#   None
+#   1 if the command failed, 0 otherwise
 #######################################
 utils::exec_cmd() {
   # retrieve arguments
@@ -61,7 +61,7 @@ utils::exec_cmd() {
     exit 1
   fi
   # execute the command in background
-  ${cmd} > /dev/null 2>&1 & 
+  ${cmd} > /dev/null 2>&1 &
   # display loader while command is running
   local pid=$!
   local i=1
@@ -75,8 +75,11 @@ utils::exec_cmd() {
   # check is the command succeeded
   if [ "$?" -ne 0 ]; then
     echo -ne "\r\033[0;31mFAIL\033[0m ${cmd_explanation}\n"
+    trap - EXIT
+    return 1
   else
     echo -ne "\r\033[0;32mDONE\033[0m ${cmd_explanation}\n"
+    trap - EXIT
+    return 0
   fi
-  trap - EXIT
 }

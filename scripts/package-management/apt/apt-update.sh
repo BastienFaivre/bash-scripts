@@ -11,7 +11,7 @@ echo 'Update apt packages'
 # ask for super user
 utils::ask_sudo
 # trap any error
-trap "exit 1" ERR
+trap "utils::err 'An error occured while updating the packages'; exit 1" ERR
 # update and clean apt packages
 sudo apt-get update
 sudo apt-get --with-new-pkgs upgrade -y --show-progress
