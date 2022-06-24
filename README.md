@@ -6,12 +6,12 @@ This repository aims to provide multiple useful bash scripts.
 
 - package-management
   - apt
-    - [apt-install](scripts/package-management/apt/apt-install.sh)
-    - [apt-remove](scripts/package-management/apt/apt-remove.sh)
+    - [apt-install](scripts/package-management/apt/apt-install.sh) [coming soon]
+    - [apt-remove](scripts/package-management/apt/apt-remove.sh) [coming soon]
     - [apt-update](scripts/package-management/apt/apt-update.sh)
   - snap
-    - [snap-install](scripts/package-management/snap/snap-install.sh)
-    - [snap-remove](scripts/package-management/snap/snap-remove.sh)
+    - [snap-install](scripts/package-management/snap/snap-install.sh) [coming soon]
+    - [snap-remove](scripts/package-management/snap/snap-remove.sh) [coming soon]
     - [snap-update](scripts/package-management/snap/snap-update.sh)
   - [update](scripts/package-management/update.sh)
 
