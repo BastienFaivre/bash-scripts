@@ -32,7 +32,7 @@ while [[ "$#" -gt 0 ]]; do
     -h|--shutdown) shutdown=true;;
     -r|--reboot) reboot=true;;
     -f|--force) force=true;;
-    *) echo "Unknown parameter passed: ${1}"; usage; exit 1;;
+    *) utils::err "Unknown parameter passed: ${1}"; usage; exit 1;;
   esac;
   shift;
 done

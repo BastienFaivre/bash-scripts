@@ -53,7 +53,7 @@ while [[ "$#" -gt 0 ]]; do
   case ${1} in
     --help) usage; exit 0;;
     -t|--target-directory) target="${2}"; shift;;
-    *) echo "Unknown parameter passed: ${1}"; usage; exit 1;;
+    *) utils::err "Unknown parameter passed: ${1}"; usage; exit 1;;
   esac;
   shift;
 done
