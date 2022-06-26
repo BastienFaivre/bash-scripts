@@ -37,10 +37,10 @@ NOTE: the specified target directory must be present in the path of your bash pr
 export PATH="$PATH:/path/to/target-directory"
 ```
 
-To execute a script `foo.sh`, just type its name in the terminal (without the extension):
+To execute a script `foo.sh`, just type its name in the terminal (without the extension) following by its arguments if needed:
 
 ```bash
-foo
+foo arg1 arg2 ...
 ```
 
 To properly uninstall the scripts, simply run the [clean script](clean.sh) also located in the scripts folder:
