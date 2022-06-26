@@ -10,10 +10,10 @@ readonly PATH_TO_SCRIPT="$(dirname "$(readlink "${0}")")"
 usage() {
   echo 'Usage: update [OPTIONS]'
   echo 'OPTIONS:'
-  echo -e '      --help     Display this help message'
-  echo -e '  -h, --shutdown Shutdown the system after update'
-  echo -e '  -r, --reboot   Reboot the system after update'
-  echo -e '  -f, --force    Force shutdown/reboot if the update failed'
+  echo '      --help     Display this help message'
+  echo '  -h, --shutdown Shutdown the system after update'
+  echo '  -r, --reboot   Reboot the system after update'
+  echo '  -f, --force    Force shutdown/reboot if the update failed'
   echo "Note 1: if both --shutdown and --reboot are provided, --shutdown will\
  be used."
   echo "Note 2: by default, the system will not be shutdown/rebooted if the\

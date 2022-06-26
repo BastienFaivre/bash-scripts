@@ -8,10 +8,10 @@
 usage() {
   echo 'Usage: ./setup.sh [OPTIONS]'
   echo 'OPTIONS:'
-  echo -e '             --help                    Display this help message'
-  echo -e "  -t <path>, --target-directory <path> Target directory to install\
+  echo '             --help                    Display this help message'
+  echo "  -t <path>, --target-directory <path> Target directory to install\
  the scripts."
-  echo -e "                                       Default: "${target}""
+  echo "                                       Default: "${target}""
 }
 
 install_prerequisites() {
