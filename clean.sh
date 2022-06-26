@@ -10,7 +10,10 @@ delete_softlinks() {
   trap "return 1" ERR
   # remove all softlinks
   for script in $(find ./scripts -name "*.sh"); do
-    sudo srm -drz  "$(cat ./utils/target-directory.txt)/$(basename "${script}" .sh)"
+    # check that the script link exists
+    if [[ -L "$(cat ./utils/target-directory.txt)/$(basename "${script}" .sh)" ]]; then
+      sudo srm -drz  "$(cat ./utils/target-directory.txt)/$(basename "${script}" .sh)"
+    fi
   done
   # remove target directory
   rm ./utils/target-directory.txt
