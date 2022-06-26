@@ -1,2 +1,3 @@
 secure-delete
 trash-cli
+git
