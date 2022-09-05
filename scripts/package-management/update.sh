@@ -7,6 +7,9 @@ readonly PATH_TO_SCRIPT="$(dirname "$(readlink "${0}")")"
 # import utility functions
 . "${PATH_TO_SCRIPT}"/../../utils/utils.sh
 
+# import configuration
+. "${PATH_TO_SCRIPT}"/package-management.conf
+
 usage() {
   echo 'Usage: update [OPTIONS]'
   echo 'OPTIONS:'
@@ -44,9 +47,16 @@ utils::ask_sudo
 error=0
 # iterate on all package managers and update
 for manager in $(find "${PATH_TO_SCRIPT}" -mindepth 1 -type d); do
-  utils::exec_cmd "$(basename "${manager}")-update" \
-    "Update $(basename "${manager}") packages"
-  ((error|=$?))
+  # only update the chosen package managers
+  chosen=UPDATE_$(basename "${manager}")
+  if [[ ${!chosen} = true ]]; then
+    utils::exec_cmd "$(basename "${manager}")-update" \
+      "Update $(basename "${manager}") packages"
+    ((error|=$?))
+  else
+    echo "$(basename "${manager}") packages update skipped as defined in" \
+      "config file"
+  fi
 done
 # Done
 if [[ "${error}" -eq 0 ]]; then
