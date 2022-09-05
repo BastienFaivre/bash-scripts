@@ -5,12 +5,16 @@ This repository aims to provide multiple useful bash scripts.
 ## Scripts
 
 - package-management
+  - [README](scripts/package-management/README.md)
   - apt
+    - [apt-install](scripts/package-management/apt/apt-install.sh)
     - [apt-manage](scripts/package-management/apt/apt-manage.sh)
     - [apt-update](scripts/package-management/apt/apt-update.sh)
   - snap
+    - [snap-install](scripts/package-management/snap/snap-install.sh)
     - [snap-manage](scripts/package-management/snap/snap-manage.sh)
     - [snap-update](scripts/package-management/snap/snap-update.sh)
+  - [install](scripts/package-management/install.sh)
   - [update](scripts/package-management/update.sh)
 
 ## Setup and use the scripts
