@@ -1,5 +1,9 @@
 # Package Management
 
+## Update packages
+
+You can choose which package managers you want to update the packages for. This is done by setting the `UPDATE_<package-manager>` variable to `true` or `false` in the [package-management.conf](package-management.conf) file.
+
 ## Install and remove packages
 
 For each package manager, a script `<package-manager>-manage.sh` is provided. The main utility of this script is that it helps you to keep track of your installed packages, which can be useful when switching to a new machine.
