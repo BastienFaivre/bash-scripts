@@ -65,7 +65,7 @@ utils::exec_cmd() {
   # display loader while command is running
   local pid=$!
   local i=1
-  local sp='/-\|'
+  local sp='⣾⣽⣻⢿⡿⣟⣯⣷'
   trap 'kill ${pid} 2 > /dev/null' EXIT
   while kill -0 ${pid} 2> /dev/null; do
     echo -ne "\r${sp:i++%${#sp}:1} ${cmd_explanation}"
