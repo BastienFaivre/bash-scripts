@@ -60,8 +60,8 @@ utils::exec_cmd() {
     utils::err 'function exec_cmd(): No command provided.'
     exit 1
   fi
-  # execute the command in background
-  ${cmd} > /dev/null 2>&1 &
+  # execute the command in background and redirect output to log file
+  ${cmd} > /tmp/log.txt 2> /tmp/log.txt &
   # display loader while command is running
   local pid=$!
   local i=1
@@ -75,10 +75,16 @@ utils::exec_cmd() {
   # check is the command succeeded
   if [ "$?" -ne 0 ]; then
     echo -ne "\r\033[0;31mFAIL\033[0m ${cmd_explanation}\n"
+    # display log file
+    cat /tmp/log.txt
+    # remove log file
+    rm /tmp/log.txt
     trap - EXIT
     return 1
   else
     echo -ne "\r\033[0;32mDONE\033[0m ${cmd_explanation}\n"
+    # remove log file
+    rm /tmp/log.txt
     trap - EXIT
     return 0
   fi
